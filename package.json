@@ -1,0 +1,28 @@
+{
+  "name": "pronet-gaming-technical-task",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "pnpm --filter shared build && concurrently \"pnpm dev:client\" \"pnpm dev:server\"",
+    "dev:client": "pnpm --filter client serve",
+    "dev:server": "pnpm --filter server watch",
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.17.1",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.45.0",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.36.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.6.2"
+  },
+  "engines": {
+    "node": "22.x",
+    "pnpm": "10.x"
+  }
+}
