@@ -19,10 +19,6 @@ jest.mock('../middlewares/authentication.middleware', () => ({
 }));
 
 describe('Authentication Router', () => {
-  beforeEach(() => {
-    jest.resetAllMocks();
-  });
-
   it('should register a new user', async () => {
     (authenticationService.register as jest.Mock).mockResolvedValue({ ...mockUser, id: '1234' });
 

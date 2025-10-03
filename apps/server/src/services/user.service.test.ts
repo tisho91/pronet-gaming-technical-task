@@ -3,13 +3,13 @@ import { BaseUser } from '@pronet/shared';
 
 const mockFsExistsSync = jest.fn(() => true);
 const mockFsReadFile = jest.fn(() => Promise.resolve('[]'));
-const mockFsWriteFile = jest.fn().mockResolvedValue(undefined);
+const mockFsWriteFile = jest.fn(async (path, data, encoding) => {});
 
 jest.mock('fs', () => ({
   existsSync: () => mockFsExistsSync(),
   promises: {
     readFile: () => mockFsReadFile(),
-    writeFile: () => mockFsWriteFile(),
+    writeFile: (path: any, data: any, encoding: any) => mockFsWriteFile(path, data, encoding),
   },
 }));
 jest.mock('../utils', () => ({
@@ -34,12 +34,16 @@ describe('User Service', () => {
     expect(result).toEqual({
       ...mockUser,
       id: 'unique-id-123',
+      favoriteCharacters: [],
     });
   });
 
   it('should throw error if the user already exists', async () => {
     mockFsReadFile.mockResolvedValueOnce(JSON.stringify([mockUser]));
-    await expect(userService.addUser(mockUser)).rejects.toThrow('User already exists');
+    await expect(userService.addUser(mockUser)).rejects.toEqual({
+      message: 'User already exists',
+      code: 500,
+    });
   });
 
   it('should return the user if found in the database', async () => {
@@ -60,15 +64,59 @@ describe('User Service', () => {
 
   it('should throw error if the user is not found', async () => {
     mockFsReadFile.mockResolvedValueOnce(JSON.stringify([mockUser]));
-    await expect(userService.findUserByEmail('notfound@mail.com')).rejects.toThrow(
-      'User not found'
-    );
+    await expect(userService.findUserByEmail('notfound@mail.com')).rejects.toEqual({
+      message: 'User not found',
+      code: 404,
+    });
   });
 
   it('should throw error if there is db connection problem', async () => {
     mockFsReadFile.mockRejectedValue('err');
-    await expect(userService.findUserByEmail('test')).rejects.toThrow(
-      'Error reading users DB: err'
+    await expect(userService.findUserByEmail('test')).rejects.toEqual({
+      message: 'Error reading users DB: err',
+      code: 500,
+    });
+  });
+
+  it('should add character to favorite characters list', async () => {
+    mockFsReadFile.mockResolvedValueOnce(
+      JSON.stringify([
+        {
+          ...mockUser,
+          favoriteCharacters: [],
+          id: '123',
+        },
+      ])
     );
+    await userService.updateFavoriteCharacterList({
+      action: 'add',
+      userId: '123',
+      characterId: 'charId',
+    });
+    expect(mockFsWriteFile).toHaveBeenCalled();
+
+    const writtenData = JSON.parse(mockFsWriteFile.mock.calls[0][1]);
+    expect(writtenData[0].favoriteCharacters).toEqual(['charId']);
+  });
+
+  it('should remove character from favorite characters list', async () => {
+    mockFsReadFile.mockResolvedValueOnce(
+      JSON.stringify([
+        {
+          ...mockUser,
+          favoriteCharacters: ['charId1', 'charId2'],
+          id: '123',
+        },
+      ])
+    );
+    await userService.updateFavoriteCharacterList({
+      action: 'remove',
+      userId: '123',
+      characterId: 'charId1',
+    });
+    expect(mockFsWriteFile).toHaveBeenCalled();
+
+    const writtenData = JSON.parse(mockFsWriteFile.mock.calls[0][1]);
+    expect(writtenData[0].favoriteCharacters).toEqual(['charId2']);
   });
 });

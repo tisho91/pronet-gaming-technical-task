@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import { BaseUser, LoginUser } from '@pronet/shared';
 import { validateMiddleware } from '../middlewares/validate.middleware';
 import { loginUserSchema, registerUserSchema } from '../schemas/user.schema';
@@ -11,17 +11,25 @@ export const authenticationRouter = express.Router();
 authenticationRouter.post(
   '/register',
   validateMiddleware(registerUserSchema),
-  async (req: Request<{}, {}, BaseUser>, res: Response) => {
-    const newUser = await authenticationService.register(req.body);
-    res.status(201).send(newUser);
+  async (req: Request<{}, {}, BaseUser>, res: Response, next) => {
+    try {
+      const newUser = await authenticationService.register(req.body);
+      res.status(201).send(newUser);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 authenticationRouter.post(
   '/login',
   validateMiddleware(loginUserSchema),
-  async (req: Request<{}, {}, LoginUser>, res: Response) => {
-    const newUser = await authenticationService.login(req.body);
-    res.status(201).send(newUser);
+  async (req: Request<{}, {}, LoginUser>, res: Response, next: NextFunction) => {
+    try {
+      const newUser = await authenticationService.login(req.body);
+      res.status(201).send(newUser);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 authenticationRouter.post('/logout', authenticationMiddleware, async (req: AuthRequest, res) => {

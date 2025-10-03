@@ -5,7 +5,7 @@
   "scripts": {
     "watch": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc -p .",
-    "test": "pnpm jest"
+    "test": "pnpm --filter shared build && pnpm jest"
   },
   "dependencies": {
     "@pronet/shared": "workspace:*",

@@ -11,4 +11,5 @@ export interface LoginUser {
 
 export interface UserDBEntity extends BaseUser {
   id: string;
+  favoriteCharacters: string[];
 }

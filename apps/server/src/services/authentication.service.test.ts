@@ -10,6 +10,7 @@ const mockUser: UserDBEntity = {
   email: 'test@mail.com',
   id: '1234',
   password: '123456',
+  favoriteCharacters: [],
 };
 const mockAddUser = jest.fn().mockResolvedValue(mockUser);
 
@@ -52,6 +53,6 @@ describe('Authentication Service', () => {
         ...mockUser,
         password: 'wrongpass',
       })
-    ).rejects.toThrow('Passwords do not match');
+    ).rejects.toThrow('Wrong password');
   });
 });

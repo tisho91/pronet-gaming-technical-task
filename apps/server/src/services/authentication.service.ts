@@ -26,7 +26,7 @@ export class AuthenticationService {
       throw new Error('User not found');
     }
     if (user.password !== userData.password) {
-      throw new Error('Passwords do not match');
+      throw new Error('Wrong password');
     }
     const tokens = this.generateTokens({ id: user.id, email: user.email });
     // TODO keep the refresh token in the "db"

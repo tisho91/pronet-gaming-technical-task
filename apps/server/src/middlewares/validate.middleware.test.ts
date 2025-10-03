@@ -1,7 +1,8 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import request from 'supertest';
 import { registerUserSchema } from '../schemas/user.schema';
 import { validateMiddleware } from './validate.middleware';
+import { ApiError } from '../utils/apiError';
 
 describe('validate middleware', () => {
   let app: express.Express;
@@ -11,6 +12,11 @@ describe('validate middleware', () => {
     app.use(express.json());
     app.post('/test', validateMiddleware(registerUserSchema), (req: Request, res: Response) => {
       res.status(200).json({ success: true });
+    });
+    app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+      const status = err instanceof ApiError ? err.code : 500;
+      const message = err instanceof ApiError ? err.message : 'Unknown error';
+      res.status(status).json({ message });
     });
   });
 
