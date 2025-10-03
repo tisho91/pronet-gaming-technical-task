@@ -1,7 +1,7 @@
 export default {
-    semi: true,
-    singleQuote: false,
-    trailingComma: "es5",
-    printWidth: 100,
-    bracketSpacing: true,
+  semi: true,
+  singleQuote: true,
+  trailingComma: 'es5',
+  printWidth: 100,
+  bracketSpacing: true,
 };

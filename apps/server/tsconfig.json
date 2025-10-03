@@ -9,7 +9,8 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["src"],
+  "include": ["src/**/*.ts", "src/**/*.test.ts"],
+  "types": ["jest"],
   "references": [
     { "path": "../../shared" }
   ]

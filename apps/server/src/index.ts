@@ -1,22 +1,28 @@
-import express from "express";
-import path from "path";
-import { User } from "@pronet/shared";
+import express from 'express';
+import path from 'path';
+import { corsMiddleware } from './middlewares/cors.middleware';
+import { router } from './router';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, "../../client/dist/client/browser")));
+app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../client/dist/client/browser/index.html"));
+if (process.env.NODE_ENV === 'development') {
+  app.use(corsMiddleware);
+}
+
+app.use(express.static(path.join(__dirname, '../../client/dist/client/browser')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../client/dist/client/browser/index.html'));
 });
 
+app.use(router);
+
 app.listen(port, () => {
-  const user: User = {
-    email: "test",
-    name: "s",
-    id: 1,
-    password: "123456",
-  };
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Server listening on port ${port}`);
 });

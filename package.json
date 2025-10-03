@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "pnpm --filter shared build && concurrently \"pnpm dev:client\" \"pnpm dev:server\"",
-    "dev:client": "pnpm --filter client serve",
+    "dev:client": "pnpm --filter client start",
     "dev:server": "pnpm --filter server watch",
     "lint": "eslint ."
   },
