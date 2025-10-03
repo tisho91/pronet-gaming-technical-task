@@ -1,18 +1,18 @@
 import request from 'supertest';
 import express from 'express';
-import { router } from './authentication.router';
+import { authenticationRouter } from './authentication.router';
 import { authenticationService } from '../services/authentication.service';
 
 jest.mock('../services/authentication.service');
 
 const app = express();
 app.use(express.json());
-app.use(router);
+app.use(authenticationRouter);
 
 const mockUser = { id: '123', email: 'test@mail.com', name: 'TestUser', password: 'test123' };
 
 jest.mock('../middlewares/authentication.middleware', () => ({
-  authMiddleware: (req: any, res: any, next: any) => {
+  authenticationMiddleware: (req: any, res: any, next: any) => {
     req.user = mockUser;
     next();
   },

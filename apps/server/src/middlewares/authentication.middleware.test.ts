@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { authMiddleware } from './authentication.middleware';
+import { authenticationMiddleware } from './authentication.middleware';
 
 const mockVerify = jest.fn(() => true);
 jest.mock('jsonwebtoken', () => ({
@@ -16,13 +16,13 @@ describe('Authentication Middleware', () => {
   it('should call next if authorized', () => {
     const req = { headers: { authorization: 'Bearer Token' } } as Request;
 
-    authMiddleware(req, resMock, nextMock);
+    authenticationMiddleware(req, resMock, nextMock);
     expect(nextMock).toHaveBeenCalled();
   });
 
   it('should throw error if there is no token', () => {
     const req = { headers: {} } as Request;
-    authMiddleware(req, resMock, nextMock);
+    authenticationMiddleware(req, resMock, nextMock);
     expect(resMock.sendStatus).toHaveBeenCalledWith(401);
   });
 
@@ -31,7 +31,7 @@ describe('Authentication Middleware', () => {
     mockVerify.mockImplementationOnce(() => {
       throw new Error('token invalid');
     });
-    authMiddleware(req, resMock, nextMock);
+    authenticationMiddleware(req, resMock, nextMock);
     expect(resMock.sendStatus).toHaveBeenCalledWith(403);
   });
 });

@@ -4,7 +4,8 @@
   "main": "dist/index.js",
   "scripts": {
     "watch": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "test": "pnpm jest"
   },
   "dependencies": {
     "@pronet/shared": "workspace:*",
