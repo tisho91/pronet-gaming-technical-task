@@ -31,13 +31,14 @@ describe('Character router', () => {
       ok: true,
       json: async () => [
         {
-          id: 'test',
+          name: 'TestChar',
+          url: 'http://characters/1',
         },
       ],
     });
     const res = await request(app).get('/').expect(200);
     expect(res.status).toBe(200);
-    expect(res.body).toEqual([{ id: 'test' }]);
+    expect(res.body).toEqual([{ id: '1', name: 'TestChar', url: 'http://characters/1' }]);
   });
 
   it('should receive single character from server api', async () => {

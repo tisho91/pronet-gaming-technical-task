@@ -12,7 +12,15 @@ charactersRouter.get('/', async (req, res) => {
     method: 'GET',
   });
   const characters = await apiResponse.json();
-  res.status(200).send(characters);
+  // TODO - make it outside of the route
+  const modifiedCharacters = characters.map((character: any) => {
+    const id = character.url.split('/').reverse()[0];
+    return {
+      ...character,
+      id,
+    };
+  });
+  res.status(200).send(modifiedCharacters);
 });
 
 charactersRouter.get('/:id', async (req, res) => {

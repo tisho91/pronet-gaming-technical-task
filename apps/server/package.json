@@ -8,6 +8,7 @@
     "test": "pnpm --filter shared build && pnpm jest"
   },
   "dependencies": {
+    "@angular/material": "20.2.7",
     "@pronet/shared": "workspace:*",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
