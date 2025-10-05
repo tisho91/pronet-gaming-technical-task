@@ -1,0 +1,19 @@
+<form (ngSubmit)="onSubmit()">
+  <app-form-input
+    [formControl]="emailControl"
+    label="email"
+    name="email"
+    placeholder="example@email.com"
+    type="email"
+  />
+  <app-form-input
+    [formControl]="passwordControl"
+    label="password"
+    name="password"
+    placeholder="******"
+    type="password"
+  />
+  <app-form-button [disabled]="form.invalid" label="Login" type='submit'></app-form-button>
+</form>
+
+<p class="auth-info">Don't have an account ? <a [routerLink]="['/register']">Register</a> from here</p>

@@ -4,7 +4,6 @@
 * {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   box-sizing: border-box;
-  font-size: 10px;
 }
 
 body{
@@ -24,10 +23,22 @@ body{
 
 
 .auth-info {
-  font-size: 1.6rem;
+  font-size: 16px;
   color: #f3f3f3;
   a {
-    font-size: 1.6rem;
+    font-size: 16px;
     color:#007fff ;
   }
 }
+
+
+.error-popup{
+    @include mat.dialog-overrides((
+      container-shape: 0.8rem,
+      subhead-line-height: 1.6rem,
+      subhead-color: #a94442,
+      actions-alignment: left
+    ));
+
+}
+

@@ -36,10 +36,7 @@
               "includePaths": [
                 "node_modules/bootstrap/scss"
               ]
-            },
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
-            ]
+            }
           },
           "configurations": {
             "production": {

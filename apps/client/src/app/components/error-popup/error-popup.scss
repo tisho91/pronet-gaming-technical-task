@@ -1,0 +1,15 @@
+.error-list {
+  padding-left: 18px;
+  & > li {
+    font-size: 14px;
+    list-style: disc;
+  }
+}
+.error-popup-content {
+  font-size: 14px;
+}
+.close-button{
+  .mdc-button__label{
+    font-size: 24px;
+  }
+}

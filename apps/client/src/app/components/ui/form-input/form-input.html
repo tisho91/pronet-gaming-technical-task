@@ -1,0 +1,16 @@
+<div class="input-group">
+  <label [for]="name" class="input-label">{{label}}</label>
+  <div>
+    <input
+      (blur)="onTouched()"
+      (input)="onChange($event)"
+      [id]="name"
+      [placeholder]="placeholder"
+      [required]="required"
+      [type]="type"
+      class="form-input"/>
+    @if (!formControl.valid && formControl.touched) {
+      <div class="input-error">{{getErrorMessage()}}</div>
+    }
+  </div>
+</div>

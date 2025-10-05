@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>HTTP Error</h2>
+<mat-dialog-content class="error-popup-content">
+  <ul class="error-list">
+    @for(error of data.errors; track error) {
+      <li>{{ error }}</li>
+  }
+  </ul>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="close-button" mat-button matDialogClose>Close</button>
+</mat-dialog-actions>
