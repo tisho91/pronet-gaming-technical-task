@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BaseUser, LoginUser } from '@pronet/shared';
+import { HttpClient, HttpContext } from '@angular/common/http';
+import { LoginUser, RegisterUser } from '@pronet/shared';
+import { SKIP_ERROR_INTERCEPTOR } from '../interceptors/http-error-interceptor';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,17 @@ export class AuthenticationService {
     return this.http.post('/api/user/login', user);
   }
 
-  register(user: BaseUser) {
+  register(user: RegisterUser) {
     return this.http.post('/api/user/register', user);
+  }
+
+  loadUser(token: string) {
+    const context = new HttpContext().set(SKIP_ERROR_INTERCEPTOR, true);
+    return this.http.get('/api/user', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      context,
+    });
   }
 }

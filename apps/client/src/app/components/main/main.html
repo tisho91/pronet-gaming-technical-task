@@ -1,0 +1,26 @@
+<app-header [sideNavRef]="snav"></app-header>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #snav
+    mode="over"
+    position="end"
+    fixedInViewport="true"
+    class="sideNav"
+  >
+    <mat-nav-list class="navigation-list">
+      @if (router.url === '/') {
+        <a class="navigation-item" routerLink="/favorites"  mat-list-item>Favorites</a>
+      } @else if (router.url ==='/favorites') {
+        <a class="navigation-item" routerLink="/" mat-list-item>Characters List</a>
+      } @else {
+<!--        TODO could be better-->
+        <a class="navigation-item" routerLink="/favorites"  mat-list-item>Favorites</a>
+        <a class="navigation-item" routerLink="/" mat-list-item>Characters List</a>
+      }
+      <a class="navigation-item" (click)="logout()" mat-list-item>Logout</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="content-wrapper">
+      <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

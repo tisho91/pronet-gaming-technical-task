@@ -1,0 +1,25 @@
+@if (!filterByFavorites){
+  <input type="text" class="search" placeholder="Search for character"  (keyup)="setSearch($event)"/>
+}
+<div class="scrollable-content">
+<!--  TODO improve this with virtual scroll-->
+  <div class="characters-wrapper">
+    @if (filteredCharacters().length) {
+      @for (character of filteredCharacters(); track character.id){
+        @if (character.id) {
+          <app-character-item  [character]="character"></app-character-item>
+        }
+      }
+  } @else if (!filteredCharacters().length && !isLoadingCharacters()){
+      <p>No results found</p>
+    }
+  </div>
+  @if (!isLoadingCharacters()){
+    @if (shouldLoadMoreCharacters()) {
+      <div #anchor id="anchor" class="intersection-observer">asdasd</div>
+    }
+  } @else {
+    <p class="loader">Loading more results</p>
+  }
+</div>
+

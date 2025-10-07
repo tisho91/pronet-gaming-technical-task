@@ -30,7 +30,10 @@
     "@angular/material": "20.2.7",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
+    "@ngrx/effects": "^20.0.1",
+    "@ngrx/store": "^20.0.1",
     "@pronet/shared": "workspace:*",
+    "ngx-infinite-scroll": "^20.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

@@ -1,4 +1,4 @@
-import { BaseUser, LoginUser } from '@pronet/shared';
+import { LoginUser, RegisterUser } from '@pronet/shared';
 import { userService } from './user.service';
 import jwt, { SignOptions } from 'jsonwebtoken';
 import { AuthRequest } from '../types';
@@ -8,14 +8,15 @@ const ACCESS_TOKEN_EXPIRE = 60 * 60; // 1 hour
 const REFRESH_TOKEN_EXPIRE = 60 * 60 * 24 * 3; // 3 days
 
 export class AuthenticationService {
-  public async register(userData: BaseUser) {
-    const { id, email, name } = await userService.addUser(userData);
+  public async register(userData: RegisterUser) {
+    const { id, email, name, favoriteCharacters } = await userService.addUser(userData);
     const tokens = this.generateTokens({ id, email });
     // TODO keep the refresh token in the "db"
     return {
       id,
       email,
       name,
+      favoriteCharacters,
       ...tokens,
     };
   }
@@ -34,6 +35,7 @@ export class AuthenticationService {
       id: user.id,
       email: user.email,
       name: user.name,
+      favoriteCharacters: user.favoriteCharacters,
       ...tokens,
     };
   }

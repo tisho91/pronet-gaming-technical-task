@@ -1,0 +1,61 @@
+:host {
+  display: block;
+  max-height: calc(100vh - 50px);
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+:host::-webkit-scrollbar {
+  width: 8px;
+}
+
+:host::-webkit-scrollbar-thumb {
+  background: rgba(100, 100, 100, 0.4);
+  border-radius: 4px;
+}
+
+
+.character-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  .header {
+    position: relative;
+    app-favorite-button {
+      position: absolute;
+      bottom:0;
+      right: 0;
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  h3 {
+    margin-bottom: 5px;
+    color: var(--mat-color-primary);
+  }
+
+  .no-data {
+    color: #888;
+    font-style: italic;
+  }
+
+  mat-list-item {
+    &.list-item-with-icon{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    span {
+      font-size: 10px;
+    }
+  }
+
+  mat-chip {
+    margin: 2px;
+  }
+}

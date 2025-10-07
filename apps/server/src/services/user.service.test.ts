@@ -1,5 +1,5 @@
 import { UserService } from './user.service';
-import { BaseUser } from '@pronet/shared';
+import { RegisterUser } from '@pronet/shared';
 
 const mockFsExistsSync = jest.fn(() => true);
 const mockFsReadFile = jest.fn(() => Promise.resolve('[]'));
@@ -16,7 +16,7 @@ jest.mock('../utils', () => ({
   generateUniqueId: jest.fn().mockReturnValue('unique-id-123'),
 }));
 
-const mockUser: BaseUser = {
+const mockUser: RegisterUser = {
   name: 'John Doe',
   email: 'test@mail.com',
   password: '123456',

@@ -1,0 +1,21 @@
+.header {
+  height: 50px;
+  background-color: #3a3939;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h2{
+    flex-grow: 1;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .menu-button {
+    margin-right: 12px;
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+  }
+}
+

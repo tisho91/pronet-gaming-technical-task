@@ -1,4 +1,4 @@
-import { BaseUser, UserDBEntity } from '@pronet/shared';
+import { RegisterUser, UserDBEntity } from '@pronet/shared';
 import fs from 'fs';
 import path from 'path';
 import { generateUniqueId } from '../utils';
@@ -10,7 +10,7 @@ export class UserService {
   private users: UserDBEntity[] = [];
   private usersLoaded = false;
 
-  public async addUser(user: BaseUser): Promise<UserDBEntity> {
+  public async addUser(user: RegisterUser): Promise<UserDBEntity> {
     await this.ensureLoaded();
     if (!this.checkIfUserExists(user)) {
       // TODO hash the password using bcrypt or something else
@@ -81,7 +81,7 @@ export class UserService {
     return foundUser;
   }
 
-  private checkIfUserExists(userToCheck: BaseUser): boolean {
+  private checkIfUserExists(userToCheck: RegisterUser): boolean {
     return this.users.some((user) => user.email === userToCheck.email);
   }
 

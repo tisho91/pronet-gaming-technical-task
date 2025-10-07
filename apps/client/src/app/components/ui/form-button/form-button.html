@@ -1,1 +1,4 @@
-<button [disabled]="disabled" class="submit-button" type="submit">{{label}}</button>
+<button [disabled]="disabled || loading" class="submit-button" type="submit">
+
+  {{loading ? `Loading` : label}}
+</button>

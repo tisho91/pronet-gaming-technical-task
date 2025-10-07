@@ -1,0 +1,143 @@
+<section class="character-details">
+  <header class="header">
+    <h2>{{ character.name || formatArray(character.aliases) || 'Unknown Character' }}</h2>
+    <app-favorite-button [characterId]="character.id"></app-favorite-button>
+    <mat-divider></mat-divider>
+  </header>
+
+  <section class="main-info">
+    @if (hasValue(character.gender)) {
+      <p><strong>Gender:</strong> {{ character.gender }}</p>
+    }
+    @if (hasValue(character.culture)) {
+      <p><strong>Culture:</strong> {{ character.culture }}</p>
+    }
+
+    @if (hasValue(character.born) || hasValue(character.died)) {
+      <p>
+        <strong>Life:</strong>
+        {{ hasValue(character.born) ? character.born : 'Unknown' }}
+        –
+        {{ hasValue(character.died) ? character.died : 'Alive/Unknown' }}
+      </p>
+    }
+  </section>
+
+  <mat-divider></mat-divider>
+
+  <section class="titles">
+    <h3>Titles</h3>
+    @if (hasValue(character.titles)) {
+      <mat-list>
+        @for (title of character.titles; track $index) {
+          <mat-list-item class="list-item-with-icon">
+            <mat-icon matListItemIcon>military_tech</mat-icon>
+            <span>{{ title }}</span>
+          </mat-list-item>
+        }
+      </mat-list>
+    } @else {
+      <p class="no-data">No known titles.</p>
+    }
+  </section>
+
+  <section class="aliases">
+    <h3>Aliases</h3>
+    @if (hasValue(character.aliases)) {
+      <mat-chip-listbox>
+        @for (alias of character.aliases; track $index) {
+          <mat-chip>{{ alias }}</mat-chip>
+        }
+      </mat-chip-listbox>
+    } @else {
+      <p class="no-data">No aliases recorded.</p>
+    }
+  </section>
+
+  <section class="family">
+    <h3>Family</h3>
+    <mat-list>
+      @if (hasValue(character.father)) {
+        <mat-list-item class="list-item-with-icon">
+          <mat-icon matListItemIcon>man</mat-icon>
+          <span>Father: {{ character.father }}</span>
+        </mat-list-item>
+      }
+      @if (hasValue(character.mother)) {
+        <mat-list-item class="list-item-with-icon">
+          <mat-icon matListItemIcon>woman</mat-icon>
+          <span>Mother: {{ character.mother }}</span>
+        </mat-list-item>
+      }
+      @if (hasValue(character.spouse)) {
+        <mat-list-item class="list-item-with-icon">
+          <mat-icon matListItemIcon>favorite</mat-icon>
+          <span>Spouse: {{ character.spouse }}</span>
+        </mat-list-item>
+      }
+    </mat-list>
+    @if (!hasValue(character.father) && !hasValue(character.mother) && !hasValue(character.spouse)) {
+      <p class="no-data">No family information available.</p>
+    }
+  </section>
+
+  <mat-divider></mat-divider>
+
+  <section class="related">
+    <h3>Related</h3>
+
+    @if (hasValue(character.allegiances)) {
+      <div>
+        <strong>Allegiances:</strong>
+        <mat-chip-listbox>
+          @for (a of character.allegiances; track $index) {
+            <mat-chip color="primary">{{ getIdFromUrl(a) }}</mat-chip>
+          }
+        </mat-chip-listbox>
+      </div>
+    }
+
+    @if (hasValue(character.books)) {
+      <div>
+        <strong>Books:</strong>
+        <mat-chip-listbox>
+          @for (b of character.books; track $index) {
+            <mat-chip>{{ getIdFromUrl(b) }}</mat-chip>
+          }
+        </mat-chip-listbox>
+      </div>
+    }
+    @if (hasValue(character.povBooks)) {
+      <div>
+        <strong>POV Books:</strong>
+        <mat-chip-listbox>
+          @for (b of character.povBooks; track $index) {
+            <mat-chip>{{ getIdFromUrl(b) }}</mat-chip>
+          }
+        </mat-chip-listbox>
+      </div>
+    }
+
+    @if (hasValue(character.tvSeries)) {
+      <div>
+        <strong>TV Series:</strong>
+        <mat-chip-listbox>
+          @for (series of character.tvSeries; track $index) {
+            <mat-chip>{{ series }}</mat-chip>
+          }
+        </mat-chip-listbox>
+      </div>
+    }
+
+    @if (hasValue(character.playedBy)) {
+      <div>
+        <strong>Played by:</strong>
+        <mat-chip-listbox>
+          @for (actor of character.playedBy; track $index) {
+            <mat-chip>{{ actor }}</mat-chip>
+          }
+        </mat-chip-listbox>
+      </div>
+    }
+  </section>
+</section>

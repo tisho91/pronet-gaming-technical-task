@@ -1,0 +1,22 @@
+.content-wrapper {
+  height: calc(100vh - 50px);
+  overflow: initial;
+}
+
+.sideNav {
+  margin-top: 50px;
+  border-radius: 0 !important;
+  .navigation-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .navigation-item {
+    border-radius: 6px;
+    border: 1px solid #3a3939;
+    margin-bottom: 10px;
+    width: 90%;
+    text-align: center;
+  }
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -10,6 +10,10 @@ import { FormInput } from '../../ui/form-input/form-input';
 import { Router, RouterLink } from '@angular/router';
 import { FormButton } from '../../ui/form-button/form-button';
 import { AuthenticationService } from '../../../services/authentication-service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { selectAuthLoading } from '../../../state/auth/auth.selectors';
+import { Store } from '@ngrx/store';
+import { authActions } from '../../../state/auth/auth.actions';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +23,10 @@ import { AuthenticationService } from '../../../services/authentication-service'
 })
 export class Register {
   form: FormGroup;
-
+  store: Store = inject(Store);
+  isLoading$ = toSignal(this.store.select(selectAuthLoading), {
+    initialValue: false,
+  });
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router,
@@ -42,9 +49,6 @@ export class Register {
   }
 
   onSubmit() {
-    this.authenticationService.register(this.form.value).subscribe({
-      next: () => this.router.navigate(['/']),
-      error: () => {},
-    });
+    this.store.dispatch(authActions.register({ user: this.form.value }));
   }
 }

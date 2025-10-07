@@ -2,12 +2,13 @@ import express from 'express';
 import { authenticationMiddleware } from '../middlewares/authentication.middleware';
 import { userService } from '../services/user.service';
 import { AuthRequest } from '../types';
+import { getLastPage } from '../utils';
 
 export const charactersRouter = express.Router();
 
 charactersRouter.get('/', async (req, res) => {
-  const { page, size } = req.query;
-  const url = `https://anapioficeandfire.com/api/characters?page=${page}&pageSize=${size}`;
+  const { page, pageSize } = req.query;
+  const url = `https://anapioficeandfire.com/api/characters?page=${page}&pageSize=${pageSize}`;
   const apiResponse = await fetch(url, {
     method: 'GET',
   });
@@ -20,7 +21,10 @@ charactersRouter.get('/', async (req, res) => {
       id,
     };
   });
-  res.status(200).send(modifiedCharacters);
+  res.status(200).json({
+    lastPage: getLastPage(apiResponse.headers),
+    data: modifiedCharacters,
+  });
 });
 
 charactersRouter.get('/:id', async (req, res) => {
@@ -37,7 +41,7 @@ charactersRouter.post('/:id/favorite', authenticationMiddleware, async (req: Aut
   const { id: characterId } = req.params;
   const userId = req.user?.id || '';
   await userService.updateFavoriteCharacterList({ userId, characterId, action: 'add' });
-  res.status(200).send(userId);
+  res.status(200).send();
 });
 
 charactersRouter.delete(

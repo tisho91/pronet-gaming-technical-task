@@ -1,0 +1,7 @@
+<mat-icon class="favorite-button" (click)="toggleFavorite($event)">
+  @if(isCharacterFavorite()){
+    star
+  } @else {
+    star_border
+  }
+</mat-icon>

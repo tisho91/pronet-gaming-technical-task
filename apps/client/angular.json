@@ -32,11 +32,6 @@
             "styles": [
               "src/styles.scss"
             ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "node_modules/bootstrap/scss"
-              ]
-            }
           },
           "configurations": {
             "production": {
