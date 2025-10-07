@@ -38,7 +38,10 @@ describe('Character router', () => {
     });
     const res = await request(app).get('/').expect(200);
     expect(res.status).toBe(200);
-    expect(res.body).toEqual([{ id: '1', name: 'TestChar', url: 'http://characters/1' }]);
+    expect(res.body).toEqual({
+      data: [{ id: '1', name: 'TestChar', url: 'http://characters/1' }],
+      lastPage: null,
+    });
   });
 
   it('should receive single character from server api', async () => {

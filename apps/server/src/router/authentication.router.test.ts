@@ -44,7 +44,7 @@ describe('Authentication Router', () => {
     (authenticationService.logout as jest.Mock).mockResolvedValue({});
 
     const res = await request(app)
-      .post('/logout')
+      .delete('/logout')
       .set('Authorization', 'Bearer faketoken')
       .expect(200);
 

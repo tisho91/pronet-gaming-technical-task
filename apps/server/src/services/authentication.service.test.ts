@@ -29,6 +29,7 @@ const foundUser = {
   email: mockUser.email,
   accessToken: 'justatoken',
   refreshToken: 'justatoken',
+  favoriteCharacters: [],
 };
 
 describe('Authentication Service', () => {
