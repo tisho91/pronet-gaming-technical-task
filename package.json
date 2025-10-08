@@ -4,11 +4,12 @@
   "description": "",
   "scripts": {
     "dev": "pnpm --filter shared build && concurrently \"pnpm dev:client\" \"pnpm dev:server\"",
+    "serve:prod": "pnpm --filter shared build && pnpm --filter client build && pnpm dev:server",
     "dev:client": "pnpm --filter client start",
     "dev:server": "pnpm --filter server watch",
     "test:client": "pnpm --filter shared build && pnpm --filter client test",
-    "test:server": "pnpm --filter shared build && pnpm --filter server test",
-
+    "test:server": "pnpm --filter server test",
+    "test": "pnpm test:server && pnpm test:client",
     "lint": "eslint ."
   },
   "keywords": [],

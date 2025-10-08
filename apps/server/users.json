@@ -1,36 +1,15 @@
 [
   {
-    "name": "testName",
+    "name": "Test User",
     "email": "test@mail.com",
     "password": "123456",
     "id": "mg9eq3858wthid8jpsj",
-    "favoriteCharacters": []
-  },
-  {
-    "email": "test@abv.bg",
-    "password": "``````",
-    "name": "Test 123",
-    "id": "mgdn3mmjyp0ys5r8dej",
-    "favoriteCharacters": []
-  },
-  {
-    "email": "tihomir.j.marinov@gmail.com",
-    "password": "123456",
-    "name": "Tihomir Marinov",
-    "id": "mge8a3i495rp5c3huvj",
     "favoriteCharacters": [
-      "146",
-      "583",
-      "5",
-      "12",
-      "16"
+      "1",
+      "2",
+      "4",
+      "23",
+      "67"
     ]
-  },
-  {
-    "email": "asd@aaaa.bb",
-    "password": "123123",
-    "name": "asd123",
-    "id": "mgf343576tnejeszk18",
-    "favoriteCharacters": []
   }
 ]
