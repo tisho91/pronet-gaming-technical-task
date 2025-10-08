@@ -36,6 +36,7 @@ cd pronet-gaming-technical-task
 ```
 2. Enable corepack (if not already enabled):
 ```bash 
+corepack enable
 pnpm install
 ```
 ## Development
