@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { selectAuthLoading } from '../../../state/auth/auth.selectors';
 import { authActions } from '../../../state/auth/auth.actions';
 
-xdescribe('Login', () => {
+describe('Login', () => {
   let component: Login;
   let fixture: ComponentFixture<Login>;
   let store: MockStore;

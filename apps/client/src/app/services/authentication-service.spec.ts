@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { SKIP_ERROR_INTERCEPTOR } from '../interceptors/http-error-interceptor';
 
-xdescribe('AuthenticationService', () => {
+describe('AuthenticationService', () => {
   let service: AuthenticationService;
   let httpMock: HttpTestingController;
 
@@ -20,7 +20,7 @@ xdescribe('AuthenticationService', () => {
     expect(service).toBeTruthy();
   });
 
-  xdescribe('Call correct endpoint', () => {
+  describe('Call correct endpoint', () => {
     it('POST user', () => {
       const mockUser = {
         email: 'test@mail.com',

@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
 })
 class AppMockComponent {}
 
-xdescribe('Main', () => {
+describe('Main', () => {
   let component: Main;
   let fixture: ComponentFixture<Main>;
   let store: MockStore;

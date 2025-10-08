@@ -12,7 +12,7 @@ import { Injector, runInInjectionContext } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { throwError } from 'rxjs';
 
-xdescribe('httpErrorInterceptor', () => {
+describe('httpErrorInterceptor', () => {
   let next: jasmine.Spy;
   let injector: Injector;
   let dialogSpy: jasmine.SpyObj<MatDialog>;

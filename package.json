@@ -6,6 +6,9 @@
     "dev": "pnpm --filter shared build && concurrently \"pnpm dev:client\" \"pnpm dev:server\"",
     "dev:client": "pnpm --filter client start",
     "dev:server": "pnpm --filter server watch",
+    "test:client": "pnpm --filter shared build && pnpm --filter client test",
+    "test:server": "pnpm --filter shared build && pnpm --filter server test",
+
     "lint": "eslint ."
   },
   "keywords": [],

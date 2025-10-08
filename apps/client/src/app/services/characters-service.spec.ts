@@ -10,7 +10,7 @@ const mockCharactersResponse = {
   lastPage: 1,
 };
 
-xdescribe('CharactersService', () => {
+describe('CharactersService', () => {
   let service: CharactersService;
   let httpMock: HttpTestingController;
 
@@ -26,7 +26,7 @@ xdescribe('CharactersService', () => {
     expect(service).toBeTruthy();
   });
 
-  xdescribe('Call the correct endpoints', () => {
+  describe('Call the correct endpoints', () => {
     it('GET /characters', () => {
       service.getCharacters({ page: 1, pageSize: 2 }).subscribe((response) => {
         expect(response).toEqual(mockCharactersResponse);

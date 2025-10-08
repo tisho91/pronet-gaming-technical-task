@@ -4,7 +4,7 @@ import { Header } from './header';
 import { provideMockStore } from '@ngrx/store/testing';
 import { selectUser } from '../../../state/user/user.selectors';
 
-xdescribe('Header', () => {
+describe('Header', () => {
   let component: Header;
   let fixture: ComponentFixture<Header>;
 

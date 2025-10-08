@@ -10,7 +10,7 @@ import { selectToken } from '../state/user/user.selectors';
 import { of } from 'rxjs';
 import { Injector, runInInjectionContext } from '@angular/core';
 
-xdescribe('attachAuthTokenInterceptor', () => {
+describe('attachAuthTokenInterceptor', () => {
   const interceptor: HttpInterceptorFn = (req, next) =>
     TestBed.runInInjectionContext(() => attachAuthTokenInterceptor(req, next));
 
