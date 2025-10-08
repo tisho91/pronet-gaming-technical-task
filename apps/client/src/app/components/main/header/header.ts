@@ -14,6 +14,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class Header {
   store: Store = inject(Store);
-  user$ = toSignal(this.store.select(selectUser));
+  user = toSignal(this.store.select(selectUser));
   @Input() sideNavRef: MatSidenav | undefined;
 }

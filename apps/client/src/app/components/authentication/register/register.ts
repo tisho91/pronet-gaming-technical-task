@@ -7,9 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { FormInput } from '../../ui/form-input/form-input';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { FormButton } from '../../ui/form-button/form-button';
-import { AuthenticationService } from '../../../services/authentication-service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { selectAuthLoading } from '../../../state/auth/auth.selectors';
 import { Store } from '@ngrx/store';
@@ -24,13 +23,10 @@ import { authActions } from '../../../state/auth/auth.actions';
 export class Register {
   form: FormGroup;
   store: Store = inject(Store);
-  isLoading$ = toSignal(this.store.select(selectAuthLoading), {
+  isLoading = toSignal(this.store.select(selectAuthLoading), {
     initialValue: false,
   });
-  constructor(
-    private authenticationService: AuthenticationService,
-    private router: Router,
-  ) {
+  constructor() {
     this.form = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),

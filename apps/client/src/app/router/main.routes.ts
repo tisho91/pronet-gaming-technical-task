@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-export const MainRoutes: Routes = [
+export const mainRoutes: Routes = [
   {
     path: '',
     loadComponent: () => import('../components/main/main').then((m) => m.Main),

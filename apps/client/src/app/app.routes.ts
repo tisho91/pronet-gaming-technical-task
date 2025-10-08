@@ -6,12 +6,12 @@ export const routes: Routes = [
   {
     path: '',
     canActivate: [authGuard],
-    loadChildren: () => import('./router/main.routes').then((route) => route.MainRoutes),
+    loadChildren: () => import('./router/main.routes').then((route) => route.mainRoutes),
   },
   {
     path: '',
     component: LandingPage,
     loadChildren: () =>
-      import('./router/authentication.routes').then((route) => route.AuthenticationRoutes),
+      import('./router/authentication.routes').then((route) => route.authenticationRoutes),
   },
 ];

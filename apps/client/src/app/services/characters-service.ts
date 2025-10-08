@@ -14,7 +14,6 @@ export class CharactersService {
 
   setCharacterFavorite({ characterId, favorite }: { characterId: string; favorite: boolean }) {
     const context = new HttpContext().set(ATTACH_TOKEN_INTERCEPTOR, true);
-
     if (favorite) {
       return this.http.post(
         `/api/characters/${characterId}/favorite`,

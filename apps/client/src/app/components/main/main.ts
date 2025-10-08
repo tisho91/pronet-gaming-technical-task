@@ -25,12 +25,10 @@ import { authActions } from '../../state/auth/auth.actions';
 })
 export class Main {
   store: Store = inject(Store);
-  user$ = toSignal(this.store.select(selectUser));
+  user = toSignal(this.store.select(selectUser));
   router: Router = inject(Router);
 
   logout() {
     this.store.dispatch(authActions.logout());
   }
-
-  protected readonly console = console;
 }

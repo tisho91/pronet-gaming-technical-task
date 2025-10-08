@@ -4,7 +4,7 @@ import {
   effect,
   ElementRef,
   inject,
-  Input,
+  input,
   signal,
   ViewChild,
 } from '@angular/core';
@@ -28,7 +28,7 @@ import { charactersActions } from '../../../../state/characters/characters.actio
 })
 export class CharactersList {
   @ViewChild('anchor', { static: false }) anchor?: ElementRef;
-  @Input() filterByFavorites: boolean = false;
+  filterByFavorites = input<boolean>(false);
 
   private observer?: IntersectionObserver;
 
@@ -102,17 +102,22 @@ export class CharactersList {
   }
 
   public filteredCharacters = computed(() => {
-    if (this.filterByFavorites) {
+    console.log('filteredCharacters', this.filterByFavorites());
+    if (this.filterByFavorites()) {
+      console.log(1);
       return this.characters().filter((character) => {
+        console.log(2);
+
         return this.userFavorites().includes(character.id);
       });
     }
     if (this.searchWord()) {
+      const word = this.searchWord().toLowerCase();
       return this.characters().filter((character) => {
         return (
-          character?.name?.toLowerCase().includes(this.searchWord()) ||
-          character?.aliases?.[0]?.includes(this.searchWord()) ||
-          character?.culture?.includes(this.searchWord())
+          character?.name?.toLowerCase().includes(word) ||
+          character?.aliases?.[0]?.toLowerCase().includes(this.searchWord()) ||
+          character?.culture?.toLowerCase().includes(this.searchWord())
         );
       });
     }
@@ -121,7 +126,7 @@ export class CharactersList {
   });
 
   public shouldLoadMoreCharacters = computed(() => {
-    if (!this.filterByFavorites) {
+    if (!this.filterByFavorites()) {
       return this.lastLoadedPage() < this.lastPage();
     } else {
       return this.userFavorites().length > this.filteredCharacters().length;

@@ -13,7 +13,7 @@
     placeholder="******"
     type="password"
   />
-  <app-form-button [disabled]="form.invalid" [loading]="isLoading$()" label="Login" type='submit'></app-form-button>
+  <app-form-button [disabled]="form.invalid" [loading]="isLoading()" label="Login" type='submit'></app-form-button>
 </form>
 
 <p class="auth-info">Don't have an account ? <a [routerLink]="['/register']">Register</a> from here</p>

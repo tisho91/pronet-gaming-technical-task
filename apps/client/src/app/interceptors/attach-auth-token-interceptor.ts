@@ -8,12 +8,14 @@ export const ATTACH_TOKEN_INTERCEPTOR = new HttpContextToken<boolean>(() => fals
 
 export const attachAuthTokenInterceptor: HttpInterceptorFn = (req, next) => {
   const store = inject(Store);
+  const shouldAttach = req.context.get(ATTACH_TOKEN_INTERCEPTOR);
+  if (!shouldAttach) return next(req);
   return store.select(selectToken).pipe(
     take(1),
     switchMap((token: string | null) => {
       let clonedReq = req;
 
-      if (token && ATTACH_TOKEN_INTERCEPTOR) {
+      if (token) {
         clonedReq = req.clone({
           setHeaders: {
             Authorization: `Bearer ${token}`,
