@@ -48,10 +48,6 @@ export class CharacterDetails {
   );
   character: Character = this.characterSignal() || { id: this.characterId };
 
-  constructor() {
-    console.log(this.character);
-  }
-
   hasValue(value: string | string[] | undefined): boolean {
     if (!value) {
       return false;
