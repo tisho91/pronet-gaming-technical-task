@@ -1,4 +1,4 @@
-@if (!filterByFavorites){
+@if (!filterByFavorites()){
   <input type="text" class="search" placeholder="Search for character"  (keyup)="setSearch($event)"/>
 }
 <div class="scrollable-content">

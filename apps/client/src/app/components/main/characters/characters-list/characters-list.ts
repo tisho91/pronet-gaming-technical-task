@@ -102,12 +102,8 @@ export class CharactersList {
   }
 
   public filteredCharacters = computed(() => {
-    console.log('filteredCharacters', this.filterByFavorites());
     if (this.filterByFavorites()) {
-      console.log(1);
       return this.characters().filter((character) => {
-        console.log(2);
-
         return this.userFavorites().includes(character.id);
       });
     }
