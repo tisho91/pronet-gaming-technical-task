@@ -108,7 +108,7 @@ pronet-gaming-technical-task/
 * Recommended Node.js version: 22.x, pnpm version: 10.x.
 
 ### Areas for improvement
-* End-to-end tests are not fully implemented
+* End-to-end tests are not implemented
 * Some performance optimizations in character list rendering
 * Linting setup
 * Directories structure in the client
