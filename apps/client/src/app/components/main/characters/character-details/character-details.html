@@ -86,16 +86,6 @@
   <section class="related">
     <h3>Related</h3>
 
-    @if (hasValue(character.allegiances)) {
-      <div>
-        <strong>Allegiances:</strong>
-        <mat-chip-listbox>
-          @for (a of character.allegiances; track $index) {
-            <mat-chip color="primary">{{ getIdFromUrl(a) }}</mat-chip>
-          }
-        </mat-chip-listbox>
-      </div>
-    }
 
     @if (hasValue(character.books)) {
       <div>

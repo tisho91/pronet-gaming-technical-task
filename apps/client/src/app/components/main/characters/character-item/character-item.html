@@ -1,10 +1,25 @@
-<a [routerLink]="[`/characters/${character().id}`]">
-  <h3 class="character-name">{{character().name || character().aliases?.[0]}}</h3>
-  <div class="character-info">
-    <img class="character-image">
-  </div>
-  <div class="footer">
-    <app-favorite-button [characterId]="character().id || ''"></app-favorite-button>
+<a [routerLink]="['/characters', character().id]" class="character-card">
+  <div class="character-image-wrapper">
+    <img
+      class="character-image"
+      [src]="'images/faceless.png'"
+      [alt]="character().name || character().aliases?.[0]"
+    />
   </div>
 
+  <div class="character-content">
+    <h3 class="character-name">
+      {{ character().name || character().aliases?.[0] }}
+    </h3>
+
+    @if (character().aliases?.length && character().name) {
+      <p class="character-alias">
+        {{ character().aliases?.[0] }}
+      </p>
+    }
+
+    <div class="character-footer">
+      <app-favorite-button [characterId]="character().id || ''"></app-favorite-button>
+    </div>
+  </div>
 </a>

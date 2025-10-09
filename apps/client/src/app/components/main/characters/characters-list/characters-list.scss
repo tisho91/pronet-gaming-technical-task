@@ -5,10 +5,20 @@
   height: 100%;
 }
 .search {
-  height: 36px;
-  flex: 0 0 auto;
-  padding: 0 12px;
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 16px auto;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s;
 
+  &:focus {
+    border-color: #2196f3;
+  }
 }
 .scrollable-content {
   display: flex;
@@ -16,7 +26,8 @@
   align-items: stretch;
   overflow: auto;
   .intersection-observer {
-    height: 40px;
+    height: 80px;
+    margin-bottom: 10px;
   }
 }
 .characters-wrapper {
@@ -27,6 +38,13 @@
   justify-content: left;
 }
 
+app-character-item {
+  flex: 1 1 calc(25% - 16px);
+  min-width: 220px;
+  max-width: 260px;
+}
+
 .loader {
   margin: 0 auto;
 }
+

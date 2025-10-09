@@ -32,7 +32,7 @@ export interface CharactersState {
 export const initialState = {
   isLoading: false,
   characters: [],
-  pageSize: 25,
+  pageSize: 30,
   lastPage: 1,
   lastLoadedPage: 0,
 };
